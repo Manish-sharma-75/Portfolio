@@ -306,6 +306,7 @@ section {
     position: relative;
     overflow: hidden;
     transition: all 0.3s ease;
+    cursor: pointer;
 }
 
 .btn-box .btn::before {
@@ -315,8 +316,9 @@ section {
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
     transition: left 0.5s;
+    pointer-events: none;
 }
 
 .btn-box .btn:hover::before {
@@ -452,7 +454,7 @@ section {
     flex-direction: column;
     gap: 2rem;
     padding-bottom: 6rem;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 .heading {
@@ -486,6 +488,8 @@ section {
 
 .about-me {
     text-align: center;
+    position: relative;
+    z-index: 2;
 }
 
 .about-me h3 {
@@ -677,7 +681,8 @@ section {
 }
 
 .project-card {
-    height: 400px;
+    /* height: 400px; */
+    height: clamp(380px, 45vw, 450px);
     perspective: 1000px;
     box-sizing: border-box;
 }
@@ -723,9 +728,10 @@ section {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-align: center;
     padding: 30px;
-    background: linear-gradient(135deg, #171515 0%, rgba(0, 191, 255, 0.1) 100%);
-    border: 2px solid transparent;
+    background: linear-gradient(135deg, #171515 0%, rgba(0, 121, 255, 0) 100%);
+    border: 1px solid rgba(255, 0, 0, 0.3);
 }
 
 .project-image {
@@ -806,6 +812,7 @@ section {
 .project-links {
     display: flex;
     gap: 15px;
+    flex-wrap: wrap;
 }
 
 .contact {
@@ -985,7 +992,7 @@ section {
     left: 0;
     width: 0;
     height: 100%;
-    background: #e1c0c0;
+    background: rgb(226, 51, 51);
     z-index: -1;
     transition: .5s;
 }
@@ -1065,7 +1072,7 @@ section {
     }
 
     .leftsection p {
-        font-size: 1.6rem;
+        font-size: 1.8rem;
         margin-top: 1.5rem;
         margin-bottom: 1.5rem;
         padding: 0 1rem;
@@ -1082,6 +1089,7 @@ section {
 
     .rightsection .image-wrapper {
         margin-bottom: 0;
+        margin-top: 12rem;
     }
 
     .desktop-btn,
@@ -1133,11 +1141,11 @@ section {
     }
 
     .about-me h3 {
-        font-size: 2.2rem;
+        font-size: 3.2rem;
     }
 
     .about-me p {
-        font-size: 1.4rem;
+        font-size: 1.8rem;
     }
 
     .skills-row {
@@ -1254,7 +1262,7 @@ section {
     }
 
     .leftsection p {
-        font-size: 1.4rem;
+        font-size: 1.8rem;
         margin-top: 1.5rem;
         margin-bottom: 1.5rem;
         padding: 0 0.5rem;
@@ -1297,13 +1305,14 @@ section {
         width: 70%;
         max-width: 25rem;
         margin: 20px auto;
+        margin-top: 15rem;
         order: 1;
         padding: 0 1rem;
     }
 
     .heading {
-        font-size: 3.5rem;
-        margin-bottom: 3rem;
+        font-size: 4.5rem;
+        margin-bottom: 3.5rem;
     }
 
     .about {
@@ -1311,16 +1320,17 @@ section {
     }
 
     .about-img {
-        width: 15rem;
-        height: 15rem;
+        width: 17rem;
+        height: 17rem;
     }
 
     .about-me h3 {
-        font-size: 2rem;
+        font-size: 3rem;
+        margin-top: 3.5rem;
     }
 
     .about-me p {
-        font-size: 1.3rem;
+        font-size: 1.8rem;
         padding: 0 1rem;
     }
 
@@ -1422,15 +1432,15 @@ section {
     }
 
     .leftsection h3 {
-        font-size: 1.8rem;
+        font-size: 2rem;
     }
 
     .leftsection .point {
-        font-size: 1.8rem;
+        font-size: 2rem;
     }
 
     .leftsection p {
-        font-size: 1.2rem;
+        font-size: 1.8rem;
         margin-top: 1.2rem;
         margin-bottom: 1.2rem;
         padding: 0 0.5rem;
@@ -1448,6 +1458,7 @@ section {
         align-items: center;
         width: 100%;
         margin-top: 2rem;
+        margin-bottom: 2rem;
         padding: 0 1rem;
         gap: 1.2rem;
         order: 3;
@@ -1468,6 +1479,7 @@ section {
         display: flex;
         justify-content: center;
         margin: 0;
+        margin-top: 2.5rem;
     }
 
     .resume-btn {
@@ -1480,7 +1492,7 @@ section {
 
     .btn-box .btn {
         padding: 10px 30px;
-        font-size: 1.4rem;
+        font-size: 1.6rem;
     }
 
     .rightsection {
@@ -1489,6 +1501,7 @@ section {
         order: 1;
         padding: 0 1rem;
         margin: 1rem auto 0;
+        margin-top: 2rem;
     }
 
     .leftsection {
@@ -1504,16 +1517,16 @@ section {
     }
 
     .about-img {
-        width: 12rem;
-        height: 12rem;
+        width: 14rem;
+        height: 14rem;
     }
 
     .about-me h3 {
-        font-size: 1.8rem;
+        font-size: 2rem;
     }
 
     .about-me p {
-        font-size: 1.2rem;
+        font-size: 1.8rem;
     }
 
     .education-column .title {
