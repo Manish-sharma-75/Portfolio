@@ -178,75 +178,157 @@ if (skillsSection) {
 }
 
 // Contact form functionality
-const contactForm = document.getElementById('contactForm');
-const formMessage = document.getElementById('formMessage');
+// const contactForm = document.getElementById('contactForm');
+// const formMessage = document.getElementById('formMessage');
 
-if (contactForm) {
-    contactForm.addEventListener('submit', async (e) => {
+// if (contactForm) {
+//     contactForm.addEventListener('submit', async (e) => {
+//         e.preventDefault();
+
+//         const submitBtn = contactForm.querySelector('button[type="submit"]');
+//         const btnText = submitBtn.querySelector('.btn-text');
+//         const btnLoader = submitBtn.querySelector('.btn-loader');
+
+//         submitBtn.disabled = true;
+//         btnText.style.display = 'none';
+//         btnLoader.style.display = 'inline-block';
+
+//         const formData = new FormData(contactForm);
+//         const formValues = {
+//             name: formData.get('') || contactForm.querySelector('input[type="text"]').value,
+//             email: contactForm.querySelector('input[type="email"]').value,
+//             phone: contactForm.querySelector('input[type="number"]').value,
+//             subject: contactForm.querySelectorAll('input[type="text"]').value,
+//             message: contactForm.querySelector('textarea').value
+//         };
+
+//         // Loading state
+//         submitBtn.disabled = true;
+//         btnText.style.display = 'none';
+//         btnLoader.style.display = 'inline-block';
+
+//         setTimeout(() => {
+//             // reset button
+//             submitBtn.disabled = false;
+//             btnText.style.display = 'inline';
+//             btnLoader.style.display = 'none';
+
+//             formMessage.textContent = 'Thank you! Your message has been sent successfully.';
+//             formMessage.className = 'form-message show success';
+
+//             // Reset form
+//             contactForm.reset();
+
+//             // Hidden message after 5 seconds
+//             setTimeout(() => {
+//                 formMessage.classList.remove('show');
+//             }, 5000);
+//         }, 1500);
+//     });
+
+//     // Real time input validation & styling 
+//     const inputs = contactForm.querySelectorAll('input, textarea');
+//     inputs.forEach(input => {
+//         input.addEventListener('blur', function () {
+//             if (this.checkValidity()) {
+//                 this.style.borderColor = '#00ff00';
+//             } else {
+//                 this.style.borderColor = '#ff4444';
+//             }
+//         });
+
+//         input.addEventListener('input', function () {
+//             if (this.value.trim() !== '') {
+//                 if (this.checkValidity()) {
+//                     this.style.borderColor = '#00ff00';
+//                 } else {
+//                     this.style.borderColor = `rgba(255,0,0,0.2)`;
+//                 }
+//             }
+//         });
+//     });
+// }
+
+const contactForm = document.getElementById("contactForm");
+const formMessage = document.getElementById("formMessage");
+
+if(contactForm) {
+    contactForm.addEventListener("submit", async function (e) {
         e.preventDefault();
 
-        const submitBtn = contactForm.querySelector('button[type="submit"]');
-        const btnText = submitBtn.querySelector('.btn-text');
-        const btnLoader = submitBtn.querySelector('.btn-loader');
+        const submitBtn = contactForm.querySelector("button[type='submit']");
+        const btnText = submitBtn.querySelector(".btn-text");
+        const btnLoader = submitBtn.querySelector(".btn-loader");
 
         submitBtn.disabled = true;
-        btnText.style.display = 'none';
-        btnLoader.style.display = 'inline-block';
+        btnText.style.display = "none";
+        btnLoader.style.display = "inline-block";
 
-        const formData = new FormData(contactForm);
-        const formValues = {
-            name: formData.get('') || contactForm.querySelector('input[type="text"]').value,
-            email: contactForm.querySelector('input[type="email"]').value,
-            phone: contactForm.querySelector('input[type="number"]').value,
-            subject: contactForm.querySelectorAll('input[type="text"]').value,
-            message: contactForm.querySelector('textarea').value
-        };
+        try {
 
-        // Loading state
-        submitBtn.disabled = true;
-        btnText.style.display = 'none';
-        btnLoader.style.display = 'inline-block';
+            await emailjs.sendForm(
+                "service_8q3ruwt",
+                "template_fgrc7nc",
+                contactForm
+            );
 
-        setTimeout(() => {
-            // reset button
-            submitBtn.disabled = false;
-            btnText.style.display = 'inline';
-            btnLoader.style.display = 'none';
+            formMessage.innerHTML = "✅ Thank you! Your message has been sent successfully.";
+            formMessage.className = "form-message show success";
 
-            formMessage.textContent = 'Thank you! Your message has been sent successfully.';
-            formMessage.className = 'form-message show success';
-
-            // Reset form
             contactForm.reset();
 
-            // Hidden message after 5 seconds
-            setTimeout(() => {
-                formMessage.classList.remove('show');
-            }, 5000);
-        }, 1500);
+        } catch (error) {
+
+            console.error(error);
+
+            formMessage.innerHTML = "❌ Failed to send message. Please try again.";
+            formMessage.className = "form-message show error";
+
+        }
+
+        submitBtn.disabled = false;
+        btnText.style.display = "inline";
+        btnLoader.style.display = "none";
+
+        setTimeout(() => {
+            formMessage.classList.remove("show");
+        }, 5000);
+
     });
 
-    // Real time input validation & styling 
-    const inputs = contactForm.querySelectorAll('input, textarea');
+    // Live Validation
+
+    const inputs = contactForm.querySelectorAll("input, textarea");
+
     inputs.forEach(input => {
-        input.addEventListener('blur', function () {
+
+        input.addEventListener("blur", function () {
+
             if (this.checkValidity()) {
-                this.style.borderColor = '#00ff00';
+                this.style.borderColor = "#00ff00";
             } else {
-                this.style.borderColor = '#ff4444';
+                this.style.borderColor = "#ff4444";
             }
+
         });
 
-        input.addEventListener('input', function () {
-            if (this.value.trim() !== '') {
-                if (this.checkValidity()) {
-                    this.style.borderColor = '#00ff00';
-                } else {
-                    this.style.borderColor = `rgba(255,0,0,0.2)`;
-                }
+        input.addEventListener("input", function () {
+
+            if (this.value.trim() === "") {
+                this.style.borderColor = "red";
+                return;
             }
+
+            if (this.checkValidity()) {
+                this.style.borderColor = "#00ff00";
+            } else {
+                this.style.borderColor = "#ff4444";
+            }
+
         });
+
     });
+
 }
 
 console.log("Portfolio Loaded Successfully!")
