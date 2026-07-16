@@ -15,7 +15,11 @@
 
     <link href="https://cdn.boxicons.com/3.0.6/fonts/brands/boxicons-brands.min.css" rel="stylesheet" />
 
-    <script src="https://unpkg.com/typed.js@2.0.15/dist/typed.umd.js"></script>
+    <!-- <script src="https://unpkg.com/typed.js@2.0.15/dist/typed.umd.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script>
+        emailjs.init("wHBvez64DMt72mi4s");
+    </script>
 </head>
 
 <body>
@@ -384,13 +388,13 @@
                         <span class="focus"></span>
                     </div>
                     <div class="input-field">
-                        <input type="email" name="" id="" placeholder="Email Subject" required />
+                        <input type="text" name="subject" id="" placeholder="Email Subject" required />
                         <span class="focus"></span>
                     </div>
                 </div>
 
                 <div class="textarea-field">
-                    <textarea name="" id="" cols="30" rows="10" placeholder="Your Message..." required></textarea>
+                    <textarea name="message" id="" cols="30" rows="10" placeholder="Your Message..." required></textarea>
                     <span class="focus"></span>
                 </div>
 
